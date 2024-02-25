@@ -2,9 +2,11 @@
 
 export default function HeaderBar () {
     return (
-        <p>
-        Hey hooo
-        </p>
+      <div>
+        <button>
+            
+        </button>
+      </div>
     )
 
 }
