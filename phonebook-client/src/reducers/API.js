@@ -7,4 +7,10 @@ const req = axios.create({
     headers: { 'X-Custom-Header': 'foobar' }
 })
 
-
+export const loadPhonebooks = createAsyncThunk(
+    'relationship/loadPhonebooks',
+    async () => {
+      const { data } = await req.get('phonebooks');
+      return data;
+    }
+  );
