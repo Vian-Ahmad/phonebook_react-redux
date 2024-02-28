@@ -13,7 +13,7 @@ export default function PhoneList() {
         dispatch(loadPhonebooks())
     },[dispatch])
     return (
-        <div>
+        <div className="boxlist">
             {selfdata.map((user) => (
                 <PhoneItem key={user.id} user={user}/>
             ))}
