@@ -10,7 +10,16 @@ const req = axios.create({
 export const loadPhonebooks = createAsyncThunk(
     'relationship/loadPhonebooks',
     async () => {
-      const { data } = await req.get('phonebooks');
-      return data;
+        const { data } = await req.get('phonebooks');
+        console.log("ini coy=>", data)
+        return data;
     }
-  );
+);
+
+export const addPhonebooks = createAsyncThunk(
+    'relationship/addPhonebooks',
+    async (contact) => {
+        const { data } = await req.post('phonebooks', contact);
+        return data;
+    }
+);
