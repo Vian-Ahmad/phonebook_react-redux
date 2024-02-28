@@ -40,7 +40,56 @@
 
 /* for this project */
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 38px;
+  margin-right: 38px;
+  margin-top: 15px;
 
+}
+
+.btnSort {
+  height: 35px;
+  width: 35px;
+  border-radius: 5px;
+  background-color: rgb(179, 154, 14);
+  border-style: none;
+}
+
+.btnAdd {
+  height: 35px;
+  width: 35px;
+  border-radius: 5px;
+  background-color: rgb(179, 154, 14);
+  border-style: none;
+}
+
+.searchBar {
+  width: 93%;
+  height: 32px;
+  display: flex;
+  border: solid 1px black;
+  border-radius: 3px;
+}
+
+.search {
+  margin-left: 5px;
+  height: 28px;
+  width: 100%;
+  background-color: transparent;
+  border-style: none;
+}
+
+.search:focus {
+  outline: none;
+}
+
+.logoIcon {
+  background-color: transparent;
+  border-style: none;
+}
 
 .list {
   background-color: blue;
@@ -70,6 +119,10 @@
   /* margin-bottom: 20px; */
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 .btn-box {
   background-color: greenyellow;
   /* margin-top: 28px; */
@@ -79,13 +132,13 @@
 .btnEdit {
   background-color: transparent;
   border-style: none;
-  cursor: pointer;
+  
 }
 
 .btnDelete {
   background-color: transparent;
   border-style: none;
-  cursor: pointer;
+  
 }
 
 .boxlist {
@@ -102,4 +155,57 @@
   gap: 20px;
 }
 
+/* for add form */
 
+.containerAdd{
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 150vh;
+}
+
+.inputName {
+  width: 60%;
+  margin-bottom: 10px;
+  height: 25px;
+  border-radius: 3px;
+}
+
+.inputPhone {
+  width: 60%;
+  height: 25px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+}
+
+.btnboxAdd {
+  width: 61%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnsaveAdd{
+  height: 28px;
+  width: 48%;
+  border-radius: 3px;
+  background-color: rgb(179, 154, 14);
+  color: white;
+  border-style: none;
+}
+
+.btncancleAdd {
+  height: 28px;
+  width: 48%;
+  border-radius: 3px;
+  background-color: rgb(179, 154, 14);
+  color: white;
+  border-style: none;
+}

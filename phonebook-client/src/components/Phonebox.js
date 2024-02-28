@@ -1,10 +1,12 @@
+import HeaderBar from "./HeaderBar";
 import PhoneList from "./PhoneList";
 
 
 export default function Phonebox() {
     return (
         <>
-        <PhoneList />
+            <HeaderBar />
+            <PhoneList />
         </>
     )
 }
