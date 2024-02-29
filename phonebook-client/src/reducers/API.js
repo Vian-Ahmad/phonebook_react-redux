@@ -20,6 +20,15 @@ export const addPhonebooks = createAsyncThunk(
     'relationship/addPhonebooks',
     async (contact) => {
         const { data } = await req.post('phonebooks', contact);
+        console.log("INI APA COY =>", contact)
         return data;
     }
 );
+
+export const deletePhonebooks = createAsyncThunk(
+    'relationship/deletePhonebooks',
+    async ({ id }) => {
+        const { data } = await req.delete('phonebooks'/{ id })
+        return data
+    }
+)

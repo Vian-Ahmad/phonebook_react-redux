@@ -8,6 +8,7 @@ const fs = require('fs')
 router.get('/phonebooks', async function (req, res, next) {
   try {
     const users = await User.findAll()
+    console.log("CEK INI =>", users)
     res.status(200).json(users)
   } catch (error) {
     res.status(500).json({ err: error.message })
