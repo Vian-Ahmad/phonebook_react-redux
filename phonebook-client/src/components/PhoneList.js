@@ -12,6 +12,7 @@ export default function PhoneList() {
     useEffect(()=>{
         dispatch(loadPhonebooks())
     },[dispatch])
+    
     return (
         <div className="boxlist">
             {selfdata.map((user) => (

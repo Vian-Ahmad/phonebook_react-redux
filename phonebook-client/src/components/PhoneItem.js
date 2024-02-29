@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { confirmAlert } from "react-confirm-alert"
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useDispatch } from "react-redux";
 import { deletePhonebooks } from "../reducers/API";
 import { useState } from "react";
@@ -15,7 +16,7 @@ export default function PhoneItem({ user }) {
         confirmAlert({
             title: 'Konfirmasi',
             message: `Apakah anda yakin ingin menghapus data ${user.name} ?`,
-            button: [
+            buttons: [
                 {
                     label: 'Ya',
                     onClick: () => dispatch(deletePhonebooks({ id: user.id }))
@@ -27,33 +28,33 @@ export default function PhoneItem({ user }) {
         })
     }
 
-    if (isEdit) {
-        <div className="list">
-            <div className="avatarbox">Ini foto</div>
-            <div className="infoUser">
-                <p>{user.name}</p>
-                <p>{user.phone}</p>
-                <div className="btn-box">
-                    <button className="btnEdit"><FontAwesomeIcon icon={faPenToSquare} /></button>
-                    <button className="btnDelete" onClick={() => {setIsEdit(false)}}><FontAwesomeIcon icon={faTrashCan} /></button>
-                </div>
-            </div>
-        </div>
-    } else {
-        return (
-
-            <div className="list" key={user.id}>
+        if (isEdit) {
+            <div className="list">
                 <div className="avatarbox">Ini foto</div>
                 <div className="infoUser">
                     <p>{user.name}</p>
                     <p>{user.phone}</p>
                     <div className="btn-box">
                         <button className="btnEdit"><FontAwesomeIcon icon={faPenToSquare} /></button>
-                        <button className="btnDelete" onClick={() => deleteConfirm(user)}><FontAwesomeIcon icon={faTrashCan} /></button>
+                        <button className="btnDelete" onClick={() => { setIsEdit(false) }}><FontAwesomeIcon icon={faTrashCan} /></button>
                     </div>
                 </div>
             </div>
-        )
-    }
+        } else {
+            return (
 
-}
+                <div className="list" key={user.id}>
+                    <div className="avatarbox">Ini foto</div>
+                    <div className="infoUser">
+                        <p>{user.name}</p>
+                        <p>{user.phone}</p>
+                        <div className="btn-box">
+                            <button className="btnEdit"><FontAwesomeIcon icon={faPenToSquare} /></button>
+                            <button className="btnDelete" onClick={() => deleteConfirm(user)}><FontAwesomeIcon icon={faTrashCan} /></button>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+
+    }

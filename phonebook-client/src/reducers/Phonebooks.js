@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addPhonebooks, loadPhonebooks, deletePhonebooks } from "./API";
+import { addPhonebooks, loadPhonebooks, deletePhonebooks, updatePhonebooks } from "./API";
 
 
 const initialState = {
@@ -27,8 +27,6 @@ export const phonebookSlice = createSlice({
 
             .addCase(loadPhonebooks.fulfilled, (state, action) => {
                 state = { ...state, phonebooks: action.payload, status: 'succeeded' }
-                // state.status = 'succeeded'
-                // state.phonebooks = action.payload
                 return state
             })
 
@@ -42,8 +40,9 @@ export const phonebookSlice = createSlice({
             })
 
             .addCase(addPhonebooks.fulfilled, (state, action) => {
-                console.log("BROWWWWW SEE =>", state, action.payload)
-                state = { ...state, phonebooks: [{ id: action.payload.id, name: action.payload.name, phone: action.payload.phone }, ...state.phonebooks], status: 'succeeded' }
+                console.log("BROWWWWW SEE (add)=>", state, action.payload)
+                state = { ...state, phonebooks: [action.payload, ...state.phonebooks], status: 'succeeded' }
+                return state
             })
 
             .addCase(addPhonebooks.rejected, (state, action) => {
@@ -58,13 +57,40 @@ export const phonebookSlice = createSlice({
             .addCase(deletePhonebooks.fulfilled, (state, action) => {
                 state.phonebooks = state.phonebooks.filter(
                     (data) => data.id !== action.payload.id
-                )    
+                );
+                console.log("coy brow =>", action.payload)
+                state.status = 'succeeded';
+
             })
 
             .addCase(deletePhonebooks.rejected, (state, action) => {
                 state.status = 'failed'
                 state.error = action.error
             })
+
+        // .addCase(updatePhonebooks.pending, (state) => {
+        //     state.status = 'loading'
+        // })
+
+        // .addCase(updatePhonebooks.fulfilled, (state, action) => {
+        //     state.phonebooks = state.phonebooks.map((item) => {
+        //         if (item.id === action.payload.id) {
+        //             item.name === action.payload.name
+        //             item.phone === action.payload.phone
+        //         }
+
+        //         return item
+        //     })
+        //     state.status = 'succeeded'
+        // })
+
+        // .addCase(updatePhonebooks.rejected, (state, action) => {
+        //     state.status = 'failed'
+        //     state.error = action.error
+        // })
+
+
+
     }
 })
 

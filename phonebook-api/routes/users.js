@@ -8,7 +8,6 @@ const fs = require('fs')
 router.get('/phonebooks', async function (req, res, next) {
   try {
     const users = await User.findAll()
-    console.log("CEK INI =>", users)
     res.status(200).json(users)
   } catch (error) {
     res.status(500).json({ err: error.message })
@@ -39,7 +38,7 @@ router.put('/phonebooks/:id', async function (req, res, next) {
     })
     res.json(updatedb[1])
   } catch (error) {
-    res.status(500).json({err: error.message})
+    res.status(500).json({ err: error.message })
   }
 })
 
@@ -98,16 +97,24 @@ router.put('/phonebooks/:id/avatar', async function (req, res) {
 router.delete('/phonebooks/:id', async function (req, res) {
   try {
     const id = req.params.id
-    const updatepb = await User.destroy({
+    const user = await User.findOne({
+      where: {
+        id
+      }
+    })
+    if (!user) {
+      res.status(500).json({ message: 'user empty' })
+    }
+    await User.destroy({
       where: {
         id
       },
       returning: true,
       plain: true
     });
-    res.json(updatepb[1])
+    return res.status(201).json(user)
   } catch (error) {
-    res.status(500).json({ err: error.message })
+    res.status(500).json(error.message)
   }
 });
 
