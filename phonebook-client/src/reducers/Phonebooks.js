@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addPhonebooks, loadPhonebooks, deletePhonebooks } from "./API";
+import { addPhonebooks, loadPhonebooks, deletePhonebooks, updatePhonebooks } from "./API";
 
 
 const initialState = {
@@ -76,26 +76,26 @@ export const phonebookSlice = createSlice({
                 state.error = action.error
             })
 
-        // .addCase(updatePhonebooks.pending, (state) => {
-        //     state.status = 'loading'
-        // })
+        .addCase(updatePhonebooks.pending, (state) => {
+            state.status = 'loading'
+        })
 
-        // .addCase(updatePhonebooks.fulfilled, (state, action) => {
-        //     state.phonebooks = state.phonebooks.map((item) => {
-        //         if (item.id === action.payload.id) {
-        //             item.name === action.payload.name
-        //             item.phone === action.payload.phone
-        //         }
+        .addCase(updatePhonebooks.fulfilled, (state, action) => {
+            state.phonebooks = state.phonebooks.map((item) => {
+                if (item.id === action.payload.id) {
+                    item.name = action.payload.name
+                    item.phone = action.payload.phone
+                }
 
-        //         return item
-        //     })
-        //     state.status = 'succeeded'
-        // })
+                return item
+            })
+            state.status = 'succeeded'
+        })
 
-        // .addCase(updatePhonebooks.rejected, (state, action) => {
-        //     state.status = 'failed'
-        //     state.error = action.error
-        // })
+        .addCase(updatePhonebooks.rejected, (state, action) => {
+            state.status = 'failed'
+            state.error = action.error
+        })
 
 
 

@@ -209,4 +209,51 @@ button:hover {
   border-style: none;
 }
 
+/* edit */
+
+.list-edit {
+  background-color: rgb(165, 165, 165);
+  width: 230px;
+  height: 130px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: small;
+  border: solid 1px black;
+}
+
+.infoUser-edit {
+  margin-left: 10px;
+}
+
+.inputEditName {
+  margin-top: 13px;
+  margin-bottom: 10px;
+  width: 80%;
+  height: 25px;
+  border-radius: 3px;
+  border-style: none;
+}
+
+.inputEditPhone {
+  margin-bottom: 10px;
+  width: 80%;
+  height: 25px;
+  border-radius: 3px;
+  border-style: none;
+}
+
+.btnSaveEdit {
+  background-color: transparent;
+  border-style: none;
+  
+}
+
+.btnCancleEdit {
+  background-color: transparent;
+  border-style: none;
+  
+}
+
 

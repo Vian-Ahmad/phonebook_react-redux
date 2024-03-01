@@ -34,11 +34,11 @@ export const deletePhonebooks = createAsyncThunk(
     }
 )
 
-// export const updatePhonebooks = createAsyncThunk(
-//     'relationship/updatePhonebooks',
-//     async ({ id, contact }) => {
-//         console.log("UPDATE NIH =>", { id, contact })
-//         const { data } = await req.put(`phonebooks/${id}`, contact)
-//         return data
-//     }
-// )
+export const updatePhonebooks = createAsyncThunk(
+    'relationship/updatePhonebooks',
+    async ({ id, contact }) => {
+        console.log("UPDATE NIH =>", { id, contact })
+        const { data } = await req.put(`phonebooks/${id}`, contact)
+        return data
+    }
+)
