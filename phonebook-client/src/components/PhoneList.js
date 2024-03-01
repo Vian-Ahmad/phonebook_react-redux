@@ -2,23 +2,24 @@ import { useEffect } from "react";
 import PhoneItem from "./PhoneItem";
 import { useDispatch, useSelector } from "react-redux";
 import { loadPhonebooks } from "../reducers/API";
+import { showPhonebooks } from "../reducers/Phonebooks";
 
 
 
 export default function PhoneList() {
     const dispatch = useDispatch()
-    const selfdata = useSelector((state)=> state.relationship.phonebooks)
+    const {phonebooks} = useSelector(showPhonebooks)
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(loadPhonebooks())
-    },[dispatch])
-    
+    }, [dispatch])
+
     return (
         <div className="boxlist">
-            {selfdata.map((user) => (
-                <PhoneItem key={user.id} user={user}/>
+            {!!phonebooks && phonebooks.length > 0 && phonebooks.map((user) => (
+                <PhoneItem key={user.id} user={user} />
             ))}
-            
+
         </div>
 
     )
