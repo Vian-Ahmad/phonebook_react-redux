@@ -103,14 +103,11 @@
   border: solid 1px black;
 }
 
-.avatarbox{
-  background-color: aqua;
-  padding: 33px;
-  width: 25px;
-  margin-left: 5px;
-  border-radius: 60px;
-  display: flex;
-  align-items: center;
+.avatar {
+  background-color: antiquewhite;
+  margin-left: 3px;
+  width: 93px;
+  border-radius: 50px;
 }
 
 .infoUser {
@@ -256,4 +253,23 @@ button:hover {
   
 }
 
+.formAvatar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.146); 
+  backdrop-filter: blur(1px); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.formboxAvatar {
+  background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Shadow untuk efek muncul */
+    max-width: 80%;
+}

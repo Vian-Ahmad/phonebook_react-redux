@@ -42,3 +42,11 @@ export const updatePhonebooks = createAsyncThunk(
         return data
     }
 )
+
+export const uploadAvatar = createAsyncThunk(
+    'relationship/uploadAvatar',
+    async ({ id, formUser }) => {
+        const { data } = await req.put(`phonebooks/${id}`, formUser)
+        return data
+    }
+)
