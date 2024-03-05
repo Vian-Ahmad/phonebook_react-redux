@@ -9,12 +9,20 @@ const req = axios.create({
 
 export const loadPhonebooks = createAsyncThunk(
     'relationship/loadPhonebooks',
-    async () => {
-        const { data } = await req.get('phonebooks');
+    async ({ keyword, sort }) => {
+        const { data } = await req.get('phonebooks', { params: { keyword, sort } });
         console.log("ini data API=>", data)
         return data;
     }
 );
+
+export const loadPage = createAsyncThunk(
+    'relationship/loadPage',
+    async ({ page, keyword, sort }) => {
+        const { data } = await req.get('phonebooks', { params: { page, keyword, sort } })
+        return data
+    }
+)
 
 export const addPhonebooks = createAsyncThunk(
     'relationship/addPhonebooks',
@@ -23,7 +31,7 @@ export const addPhonebooks = createAsyncThunk(
         console.log("INI APA COY (add)=>", contact)
         return data;
     }
-);
+)
 
 export const deletePhonebooks = createAsyncThunk(
     'relationship/deletePhonebooks',

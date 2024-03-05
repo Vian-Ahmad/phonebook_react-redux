@@ -3,28 +3,28 @@ var router = express.Router();
 const { User } = require('../models');
 const path = require('path')
 const fs = require('fs')
-// const { Op } = require('sequelize')
+const { Op } = require('sequelize')
 
 /* GET users listing. */
 router.get('/phonebooks', async function (req, res) {
   try {
-    // const { page = 1, limit = 10, keyword = "", sort = 'ASC' } = req.query
+    const { page = 1, limit = 30, keyword = "", sort = 'ASC' } = req.query
     const { count, rows } = await User.findAndCountAll({
-      // where: {
-      //   [Op.or]: [
-      //     { name: { [Op.iLike]: `%{keyword}%` } },
-      //     { Phone: { [Op.iLike]: `%{keyword}%` } }
-      //   ]
-
-      // }, order: [['name', sort]], limit,
-      // offset: (page - 1) * limit
+      where: {
+        [Op.or]: [
+          { name: { [Op.iLike]: `%${keyword}%` } },
+          { phone: { [Op.iLike]: `%${keyword}%` } }
+        ]
+      }, 
+      order: [['name', sort]], limit,
+      offset: (page - 1) * limit
     })
-    // const pages = Math.ceil(count / limit)
+    const pages = Math.ceil(count / limit)
     res.status(200).json({
       phonebooks: rows,
-      // page: Number(page),
-      // limit: Number(limit),
-      // pages: Number(pages),
+      page: Number(page),
+      limit: Number(limit),
+      pages: Number(pages),
       total: count
     })
   } catch (error) {

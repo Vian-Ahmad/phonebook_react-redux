@@ -43,10 +43,9 @@ export default function PhoneItem({ user }) {
     if (isEdit) {
         return (
             <div className="list-edit">
-                <button className="modal-avatar">
-                    <div className="avatarbox"><img src={"http://localhost:3001/images/" + (user.avatar == null ? 'Defaultavatar.png' : `${user.avatar}`)} className="avatar" alt="avatar" />
-                    </div>
-                </button>
+                <div className="avatarbox">
+                    <img src={"http://localhost:3001/images/" + (user.avatar == null ? 'Defaultavatar.png' : `${user.avatar}`)} className="avatar" alt="avatar" />
+                </div>
                 <div className="infoUser-edit">
                     <input className="inputEditName" type="text" value={newData.name} onChange={(e) => setNewData({ ...newData, name: e.target.value })} />
                     <input className="inputEditPhone" type="text" value={newData.phone} onChange={(e) => setNewData({ ...newData, phone: e.target.value })} />
@@ -61,10 +60,9 @@ export default function PhoneItem({ user }) {
         return (
 
             <div className="list" key={user.id}>
-                <button className="modal-avatar">
-                    <div className="avatarbox"><img src={"http://localhost:3001/images/" + (user.avatar == null ? 'Defaultavatar.png' : `${user.avatar}`)} className="avatar" alt="avatar" />
-                    </div>
-                </button>
+                <div className="avatarbox"
+                ><img src={"http://localhost:3001/images/" + (user.avatar == null ? 'Defaultavatar.png' : `${user.avatar}`)} className="avatar" alt="avatar" />
+                </div>
                 <div className="infoUser">
                     <p>{user.name}</p>
                     <p>{user.phone}</p>

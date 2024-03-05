@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addPhonebooks, loadPhonebooks, deletePhonebooks, updatePhonebooks, uploadAvatar } from "./API";
+import { addPhonebooks, loadPhonebooks, deletePhonebooks, updatePhonebooks, uploadAvatar, loadPage } from "./API";
 
 
 const initialState = {
     phonebooks: [],
-    // page: 1,
-    // pages: 1,
-    // limit: 10,
-    // total: 11,
+    page: 1,
+    pages: 1,
+    limit: 10,
+    total: 11,
     status: 'idle',
     error: null
 }
@@ -18,10 +18,10 @@ export const phonebookSlice = createSlice({
     reducers: {
         startContacts: (state) => {
             state.phonebooks = []
-            // state.page = 1
-            // state.pages = 1
-            // state.limit = 10
-            // state.total = 11
+            state.page = 1
+            state.pages = 1
+            state.limit = 10
+            state.total = 11
             state.status = 'idle'
             state.error = null
         }
@@ -40,6 +40,22 @@ export const phonebookSlice = createSlice({
             })
 
             .addCase(loadPhonebooks.rejected, (state, action) => {
+                state.status = 'failed'
+                state.error = action.error
+            })
+
+            .addCase(loadPage.pending, (state) => {
+                state.status = 'loading'
+            })
+
+            .addCase(loadPage.fulfilled, (state, action) => {
+                state = { ...state, phonebooks: [...state.phonebooks, ...action.payload.phonebooks], status: 'succeeded' }
+                state.page = action.payload.page
+                state.status = 'succeeded'
+                return state
+            })
+
+            .addCase(loadPage.rejected, (state, action) => {
                 state.status = 'failed'
                 state.error = action.error
             })
