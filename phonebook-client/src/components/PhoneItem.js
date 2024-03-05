@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { deletePhonebooks, updatePhonebooks } from "../reducers/API";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AvatarForm from "./AvatarForm";
 
 
 
@@ -15,11 +14,12 @@ export default function PhoneItem({ user }) {
     const [newData, setNewData] = useState({ name: user.name, phone: user.phone })
     const [isEdit, setIsEdit] = useState(false)
 
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
 
-    const editUser = (id, contact) => {
+    const editUser = () => {
         dispatch(updatePhonebooks({ id: user.id, contact: newData }))
         setIsEdit(false)
     }
@@ -43,7 +43,7 @@ export default function PhoneItem({ user }) {
     if (isEdit) {
         return (
             <div className="list-edit">
-                <button className="modal-avatar"><AvatarForm/>
+                <button className="modal-avatar">
                     <div className="avatarbox"><img src={"http://localhost:3001/images/" + (user.avatar == null ? 'Defaultavatar.png' : `${user.avatar}`)} className="avatar" alt="avatar" />
                     </div>
                 </button>
@@ -61,7 +61,7 @@ export default function PhoneItem({ user }) {
         return (
 
             <div className="list" key={user.id}>
-                <button className="modal-avatar"><AvatarForm/>
+                <button className="modal-avatar">
                     <div className="avatarbox"><img src={"http://localhost:3001/images/" + (user.avatar == null ? 'Defaultavatar.png' : `${user.avatar}`)} className="avatar" alt="avatar" />
                     </div>
                 </button>
