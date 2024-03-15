@@ -1,11 +1,10 @@
+import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRotateBack, faFloppyDisk, faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { confirmAlert } from "react-confirm-alert"
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useDispatch } from "react-redux";
-import { deletePhonebooks, updatePhonebooks } from "../reducers/API";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { deletePhonebooks, updatePhonebooks, uploadAvatar } from "../reducers/API";
 
 
 
@@ -13,11 +12,30 @@ import { useNavigate } from "react-router-dom";
 export default function PhoneItem({ user }) {
     const [newData, setNewData] = useState({ name: user.name, phone: user.phone })
     const [isEdit, setIsEdit] = useState(false)
-
+    const [selectImage, setSelectImage] = useState()
 
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const inputFile = useRef()
 
+    const popUpAvatar = () => {
+        inputFile.current.click()
+    }
+
+    const uploadImage = (e) => {
+        if (e.target.files && e.target.files.length > 0) {
+            console.log("ini apaan sih >", e.target.files[0])
+            setSelectImage(e.target.files[0])
+            
+        }
+    }
+
+    useEffect(() => {
+        if (selectImage) {
+            const imageNew = new FormData()
+            imageNew.append('avatar', selectImage)
+            dispatch(uploadAvatar({ id: user.id, formUser: imageNew }))
+        }
+    }, [selectImage, dispatch, user.id])
 
     const editUser = () => {
         dispatch(updatePhonebooks({ id: user.id, contact: newData }))
@@ -43,8 +61,9 @@ export default function PhoneItem({ user }) {
     if (isEdit) {
         return (
             <div className="list-edit">
-                <div className="avatarbox">
+                <div className="avatarbox" onClick={popUpAvatar}>
                     <img src={"http://localhost:3001/images/" + (user.avatar == null ? 'Defaultavatar.png' : `${user.avatar}`)} className="avatar" alt="avatar" />
+                    <input type="file" accept="image/*" name="avatar" id="file" ref={inputFile} style={{ display: 'none' }} onChange={uploadImage}></input>
                 </div>
                 <div className="infoUser-edit">
                     <input className="inputEditName" type="text" value={newData.name} onChange={(e) => setNewData({ ...newData, name: e.target.value })} />
@@ -54,14 +73,16 @@ export default function PhoneItem({ user }) {
                         <button className="btnCancleEdit" onClick={() => { setIsEdit(false) }}><FontAwesomeIcon icon={faArrowRotateBack} /></button>
                     </div>
                 </div>
+
             </div>
         )
     } else {
         return (
 
             <div className="list" key={user.id}>
-                <div className="avatarbox"
-                ><img src={"http://localhost:3001/images/" + (user.avatar == null ? 'Defaultavatar.png' : `${user.avatar}`)} className="avatar" alt="avatar" />
+                <div className="avatarbox" onClick={popUpAvatar}>
+                    <img src={"http://localhost:3001/images/" + (user.avatar == null ? 'Defaultavatar.png' : `${user.avatar}`)} className="avatar" alt="avatar" />
+                    <input type="file" accept="image/*" name="avatar" id="file" ref={inputFile} style={{ display: 'none' }} onChange={uploadImage}></input>
                 </div>
                 <div className="infoUser">
                     <p>{user.name}</p>

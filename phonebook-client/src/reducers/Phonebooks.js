@@ -35,7 +35,6 @@ export const phonebookSlice = createSlice({
 
             .addCase(loadPhonebooks.fulfilled, (state, action) => {
                 state = { ...state, ...action.payload, status: 'succeeded' }
-                console.log("INI LOAD =>", state)
                 return state
             })
 
@@ -132,8 +131,6 @@ export const phonebookSlice = createSlice({
             state.status = 'failed'
             state.error = action.error
         })
-
-
 
     }
 })

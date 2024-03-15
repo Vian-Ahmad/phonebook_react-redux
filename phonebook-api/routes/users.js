@@ -8,7 +8,7 @@ const { Op } = require('sequelize')
 /* GET users listing. */
 router.get('/phonebooks', async function (req, res) {
   try {
-    const { page = 1, limit = 30, keyword = "", sort = 'ASC' } = req.query
+    const { page = 1, limit = 20, keyword = "", sort = 'ASC' } = req.query
     const { count, rows } = await User.findAndCountAll({
       where: {
         [Op.or]: [
@@ -70,6 +70,7 @@ router.put('/phonebooks/:id/avatar', async function (req, res) {
   }
 
   avatar = req.files.avatar
+  console.log('ini avatar bukan ?>', avatar)
   let fileName = Date.now() + '_' + avatar.name
   uploadPath = path.join(__dirname, '..', 'public', 'images', fileName);
 
@@ -107,7 +108,7 @@ router.put('/phonebooks/:id/avatar', async function (req, res) {
       })
       return res.status(201).json(phonebook[1])
     } catch (error) {
-      res.status(500).json(err)
+      res.status(500).json(error)
     }
   })
 });

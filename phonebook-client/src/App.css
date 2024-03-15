@@ -32,6 +32,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -126,13 +127,13 @@ button:hover {
 .btnEdit {
   background-color: transparent;
   border-style: none;
-  
+
 }
 
 .btnDelete {
   background-color: transparent;
   border-style: none;
-  
+
 }
 
 .boxlist {
@@ -150,7 +151,7 @@ button:hover {
 
 /* for add form */
 
-.containerAdd{
+.containerAdd {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -158,7 +159,7 @@ button:hover {
   flex-direction: column;
 }
 
-.form{
+.form {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -186,7 +187,7 @@ button:hover {
   justify-content: space-between;
 }
 
-.btnsaveAdd{
+.btnsaveAdd {
   height: 28px;
   width: 48%;
   border-radius: 3px;
@@ -242,17 +243,15 @@ button:hover {
 .btnSaveEdit {
   background-color: transparent;
   border-style: none;
-  
+
 }
 
 .btnCancleEdit {
   background-color: transparent;
   border-style: none;
-  
+
 }
 
-.modal-avatar {
-  width: 93px;
-  border-radius: 50px;
-  border-style: none;
-}
+/* avatar */
+
+
