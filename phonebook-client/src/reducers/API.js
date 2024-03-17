@@ -50,7 +50,6 @@ export const updatePhonebooks = createAsyncThunk(
 export const updateAvatar = createAsyncThunk(
     'contacts/updateAvatar',
     async ({ id, formData }) => {
-        console.log("data apa >", formData)
       const { data } = await req.put(`phonebooks/${id}/avatar`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'

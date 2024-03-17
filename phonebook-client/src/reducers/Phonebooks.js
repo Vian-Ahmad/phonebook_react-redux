@@ -64,7 +64,6 @@ export const phonebookSlice = createSlice({
             })
 
             .addCase(addPhonebooks.fulfilled, (state, action) => {
-                console.log("BROWWWWW SEE (add)=>", state, action.payload)
                 state = { ...state, phonebooks: [action.payload, ...state.phonebooks], status: 'succeeded' }
                 return state
             })

@@ -65,13 +65,11 @@ router.put('/phonebooks/:id/avatar', async function (req, res) {
   let avatar
   let uploadPath
 
-  console.log('ini apa ya >', req.body, req.params)
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).send('No files were uploaded.');
   } 
 
   avatar = req.files.avatar
-  console.log('ini avatar bukan ? >', avatar)
   let fileName = Date.now() + '_' + avatar.name
   uploadPath = path.join(__dirname, '..', 'public', 'images', fileName);
 
@@ -90,7 +88,6 @@ router.put('/phonebooks/:id/avatar', async function (req, res) {
         try {
           fs.unlinkSync(oldFile)
         } catch (error){
-          console.error('failed to delete old file', error)
           const phonebook = await User.update({ avatar: fileName }, {
             where: {
               id
