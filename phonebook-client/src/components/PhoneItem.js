@@ -34,6 +34,7 @@ export default function PhoneItem({ user }) {
         if (selectImage) {
             const dataNew = new FormData();
             dataNew.append("avatar", selectImage);
+            console.log("ini img >", selectImage)
             dispatch(updateAvatar({ id: user.id, formData: dataNew }));
         }
 
