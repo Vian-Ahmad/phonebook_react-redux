@@ -4,38 +4,40 @@ import { faArrowRotateBack, faFloppyDisk, faPenToSquare, faTrashCan } from "@for
 import { confirmAlert } from "react-confirm-alert"
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useDispatch } from "react-redux";
-import { deletePhonebooks, updatePhonebooks, uploadAvatar } from "../reducers/API";
+import { deletePhonebooks, updateAvatar, updatePhonebooks } from "../reducers/API";
 
 
 
 
 export default function PhoneItem({ user }) {
-    const [newData, setNewData] = useState({ name: user.name, phone: user.phone })
     const [isEdit, setIsEdit] = useState(false)
+    const [newData, setNewData] = useState({ name: user.name, phone: user.phone })
     const [selectImage, setSelectImage] = useState()
 
     const dispatch = useDispatch()
-    const inputFile = useRef()
+    const inputFile = useRef(null)
 
+    const uploadImage = (e) => {
+        if (e.target.files && e.target.files.length > 0) {
+            // console.log("ini apaan sih >", e.target.files[0])
+            setSelectImage(e.target.files[0])
+
+        }
+    }
+    
     const popUpAvatar = () => {
         inputFile.current.click()
     }
 
-    const uploadImage = (e) => {
-        if (e.target.files && e.target.files.length > 0) {
-            console.log("ini apaan sih >", e.target.files[0])
-            setSelectImage(e.target.files[0])
-            
-        }
-    }
-
     useEffect(() => {
+
         if (selectImage) {
-            const imageNew = new FormData()
-            imageNew.append('avatar', selectImage)
-            dispatch(uploadAvatar({ id: user.id, formUser: imageNew }))
+            const dataNew = new FormData();
+            dataNew.append("avatar", selectImage);
+            dispatch(updateAvatar({ id: user.id, formData: dataNew }));
         }
-    }, [selectImage, dispatch, user.id])
+
+    }, [selectImage]);
 
     const editUser = () => {
         dispatch(updatePhonebooks({ id: user.id, contact: newData }))

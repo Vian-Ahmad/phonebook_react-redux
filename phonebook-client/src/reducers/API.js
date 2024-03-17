@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const req = axios.create({
-    baseURL: 'http://localhost:3001/api',
+    baseURL: 'http://localhost:3001/api/',
     timeout: 1000,
     headers: { 'X-Custom-Header': 'foobar' }
 })
@@ -47,14 +47,14 @@ export const updatePhonebooks = createAsyncThunk(
     }
 )
 
-export const uploadAvatar = createAsyncThunk(
-    'relationship/uploadAvatar',
-    async ({ id, formUser }) => {
-        const { data } = await req.put(`phonebooks/${id}/avatar`, formUser, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
-        return data
+export const updateAvatar = createAsyncThunk(
+    'contacts/updateAvatar',
+    async ({ id, formData }) => {
+      const { data } = await req.put(`phonebooks/${id}/avatar`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      return data;
     }
-)
+  );

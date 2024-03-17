@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addPhonebooks, loadPhonebooks, deletePhonebooks, updatePhonebooks, uploadAvatar, loadPage } from "./API";
+import { addPhonebooks, loadPhonebooks, deletePhonebooks, updatePhonebooks, loadPage, updateAvatar } from "./API";
 
 
 const initialState = {
@@ -112,11 +112,11 @@ export const phonebookSlice = createSlice({
             state.error = action.error
         })
 
-        .addCase(uploadAvatar.pending, (state) => {
+        .addCase(updateAvatar.pending, (state) => {
             state.status = 'loading'
         })
 
-        .addCase(uploadAvatar.fulfilled, (state, action) => {
+        .addCase(updateAvatar.fulfilled, (state, action) => {
             state.phonebooks = state.phonebooks.map((item) => {
                 if (item.id === action.payload.id) {
                     item.avatar = action.payload.avatar
@@ -127,7 +127,7 @@ export const phonebookSlice = createSlice({
             state.status = 'succeeded'
         })
 
-        .addCase(uploadAvatar.rejected, (state, action) => {
+        .addCase(updateAvatar.rejected, (state, action) => {
             state.status = 'failed'
             state.error = action.error
         })

@@ -7,8 +7,8 @@ const { Op } = require('sequelize')
 
 /* GET users listing. */
 router.get('/phonebooks', async function (req, res) {
-  try {
-    const { page = 1, limit = 20, keyword = "", sort = 'ASC' } = req.query
+  try { 
+    const { page = 1, limit = 30, keyword = "", sort = 'ASC' } = req.query
     const { count, rows } = await User.findAndCountAll({
       where: {
         [Op.or]: [
@@ -67,10 +67,10 @@ router.put('/phonebooks/:id/avatar', async function (req, res) {
 
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).send('No files were uploaded.');
-  }
+  } 
 
   avatar = req.files.avatar
-  console.log('ini avatar bukan ?>', avatar)
+  console.log('ini avatar bukan ? >', avatar)
   let fileName = Date.now() + '_' + avatar.name
   uploadPath = path.join(__dirname, '..', 'public', 'images', fileName);
 
@@ -87,8 +87,9 @@ router.put('/phonebooks/:id/avatar', async function (req, res) {
       if (profile.avatar) {
         const oldFile = path.join(__dirname, '..', 'public', 'images', profile.avatar)
         try {
-          fs.unllinkSync(oldFile)
-        } catch {
+          fs.unlinkSync(oldFile)
+        } catch (error){
+          console.error('failed to delete old file', error)
           const phonebook = await User.update({ avatar: fileName }, {
             where: {
               id
