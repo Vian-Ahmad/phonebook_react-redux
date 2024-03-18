@@ -42,13 +42,14 @@
 /* for this project */
 
 .header {
+  position: fixed;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-left: 38px;
-  margin-right: 38px;
-  margin-top: 15px;
-
+  /* align-items: center; */
+  /* margin-left: 38px; */
+  /* margin-right: 38px; */
+  margin-top: 10px;
+  width: 100%
 }
 
 .btnSort {
@@ -57,6 +58,7 @@
   border-radius: 5px;
   background-color: rgb(179, 154, 14);
   border-style: none;
+  margin-left: 35px;
 }
 
 .btnAdd {
@@ -65,14 +67,16 @@
   border-radius: 5px;
   background-color: rgb(179, 154, 14);
   border-style: none;
+  margin-right: 35px;
 }
 
 .searchBar {
-  width: 93%;
+  width: 88%;
   height: 32px;
   display: flex;
   border: solid 1px black;
   border-radius: 3px;
+  background-color: white;
 }
 
 .search {
@@ -145,9 +149,11 @@ button:hover {
   flex-wrap: wrap;
   justify-items: center;
   grid-template-columns: repeat(5, 1fr);
+  padding-top: 60px;
   margin-top: 10px;
   margin-left: 40px;
   margin-right: 40px;
+  padding-bottom: 10px;
   gap: 20px;
 }
 
